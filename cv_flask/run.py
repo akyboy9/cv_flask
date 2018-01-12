@@ -12,9 +12,16 @@ def index_submit():
     if request.method == 'POST':
         image = request.form['filename']
         print image
-    return render_template('index.html')
+        return redirect('/success')
 
+@app.route('/success')
+def success():
+    return render_template('redirect.html')
 
+@app.route('/redirect', methods = ['GET', 'POST'])
+def go_back():
+    if request.method == 'POST':
+        return redirect('/')
 
 if __name__ == "__main__":
     # Setting this to debug for production purposes only
